@@ -61,7 +61,42 @@ The script supports `customLabels` extensions (`.jpg`, `.jpeg`, `.png`, `.bmp`,
 `.tiff`, `.tif`, `.gif`, `.webp`)
 
 
-## 3. Deactivating the virtual environment
+
+## 3. Running the web page (local server)
+ 
+Instead of the command line, you can use `index.html` — a simple page with
+an image upload box, a label-count dropdown, and a generate button — backed
+by `server.py`, which runs `pdfReplace.py` for you and sends back the
+finished PDF.
+ 
+### Start the server
+ 
+With the virtual environment active, and `pdfReplace.py`, `server.py`,
+`index.html`, and all the template PDFs in the same folder:
+ 
+```
+python server.py
+```
+ 
+You should see output like:
+ 
+```
+ * Running on http://127.0.0.1:5000
+ * Debugger is active!
+```
+ 
+### Open the page
+ 
+Go to **http://localhost:5000** in your browser. Upload an image, choose a
+label count, and click **GEN** — the generated PDF downloads automatically.
+ 
+### Stop the server
+ 
+`Ctrl+C` in the terminal.
+
+
+
+## 4. Deactivating the virtual environment
 
 When you're done:
 
