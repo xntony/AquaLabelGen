@@ -2,15 +2,20 @@ import sys
 import os
 import fitz  # PyMuPDF
 
-# Ensure argument provided
-if len(sys.argv) < 2:
-    print("Usage: python pdfReplace.py <output_filename.pdf>")
+# Ensure arguments provided
+if len(sys.argv) < 3:
+    print("Usage: python pdfReplace.py <number> <output_filename.pdf>")
+    print("  <number> selects the template: AtemoAquaCustomLabels_<number>each.pdf")
+    print("  Example: python pdfReplace.py 6 output.pdf")
     sys.exit(1)
+
+template_number = sys.argv[1]
+output_arg = sys.argv[2]
 
 # Paths
 base_dir = os.path.dirname(os.path.abspath(__file__))
-pdf_file = os.path.join(base_dir, "AtemoAquaCustomLabels.pdf")  # source PDF
-output_file = os.path.join(base_dir, sys.argv[1])
+pdf_file = os.path.join(base_dir, f"AtemoAquaCustomLabels_{template_number}each.pdf")  # source PDF
+output_file = os.path.join(base_dir, output_arg)
 
 # Supported image extensions to look for, in order of preference
 SUPPORTED_EXTENSIONS = [
@@ -35,7 +40,8 @@ new_image = find_custom_label_image(base_dir)
 
 # Check if files exist
 if not os.path.exists(pdf_file):
-    print(f" Error: Source PDF not found at {pdf_file}")
+    print(f" Error: Template not found at {pdf_file}")
+    print(f"        (expected a file named AtemoAquaCustomLabels_{template_number}each.pdf in {base_dir})")
     sys.exit(1)
 if not new_image:
     exts = ", ".join(SUPPORTED_EXTENSIONS)
