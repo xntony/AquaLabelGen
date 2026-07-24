@@ -1,4 +1,4 @@
-# AtemoAqua Label Generator
+# Aqua Label Generator
 
 This tool replaces the placeholder images in a label template PDF with your
 custom label artwork (`customLabels.*`) and saves the result as a new,
